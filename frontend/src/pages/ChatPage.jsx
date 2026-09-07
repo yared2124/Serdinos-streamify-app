@@ -1,12 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAuthUser from "../hooks/useAuthUser";
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../lib/axios";
-import {
-  StreamVideo,
-  StreamVideoClient,
-} from "@stream-io/video-react-sdk";
 import {
   Channel,
   ChannelHeader,
@@ -18,9 +14,9 @@ import {
 } from "stream-chat-react";
 import { StreamChat } from "stream-chat";
 import toast from "react-hot-toast";
-import { VideoIcon, LoaderIcon } from "lucide-react";
+import { LoaderIcon } from "lucide-react";
 
-import "stream-chat-react/dist/css/v2/index.css";
+import "stream-chat-react/dist/css/index.css";
 
 const STREAM_API_KEY = import.meta.env.VITE_STREAM_API_KEY;
 
@@ -42,11 +38,13 @@ const ChatPage = () => {
   });
 
   useEffect(() => {
+    let client;
+
     const initChat = async () => {
       if (!tokenData?.token || !authUser) return;
 
       try {
-        const client = StreamChat.getInstance(STREAM_API_KEY);
+        client = StreamChat.getInstance(STREAM_API_KEY);
 
         await client.connectUser(
           {
@@ -78,18 +76,17 @@ const ChatPage = () => {
     initChat();
 
     return () => {
-      if (chatClient) {
-        chatClient.disconnectUser();
-      }
+      if (client) client.disconnectUser();
     };
   }, [tokenData, authUser, targetUserId]);
 
-  if (loading || !chatClient || !channel)
+  if (loading || !chatClient || !channel) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
         <LoaderIcon className="animate-spin size-10 text-primary" />
       </div>
     );
+  }
 
   return (
     <div className="h-[calc(100vh-4rem)]">
