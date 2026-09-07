@@ -1,17 +1,16 @@
-import express from 'express'
+import express from "express";
+import { login, logout, signup, onboard, getMe } from "../controllers/auth.controller.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/signup",(req, res) => {
-    res.send("Signup Route")
-})
+router.post("/signup", signup);
+router.post("/login", login);
+router.post("/logout", logout);
 
-router.get("/login", (req, res) => {
-  res.send("Login Route");
-});
+router.post("/onboarding", protectRoute, onboard);
 
-router.get("/logout", (req, res) => {
-  res.send("Logout Route");
-});
+// check if user is logged in
+router.get("/me", protectRoute, getMe);
 
-export default router
+export default router;

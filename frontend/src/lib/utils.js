@@ -1,0 +1,61 @@
+export function getLanguageFlag(language) {
+  if (!language) return null;
+
+  const languageFlags = {
+    English: "🇺🇸",
+    Spanish: "🇪🇸",
+    French: "🇫🇷",
+    German: "🇩🇪",
+    Mandarin: "🇨🇳",
+    Japanese: "🇯🇵",
+    Korean: "🇰🇷",
+    Portuguese: "🇧🇷",
+    Russian: "🇷🇺",
+    Arabic: "🇸🇦",
+    Hindi: "🇮🇳",
+    Italian: "🇮🇹",
+    Dutch: "🇳🇱",
+    Turkish: "🇹🇷",
+    Polish: "🇵🇱",
+    Swedish: "🇸🇪",
+    Norwegian: "🇳🇴",
+    Danish: "🇩🇰",
+    Finnish: "🇫🇮",
+    Greek: "🇬🇷",
+    Czech: "🇨🇿",
+    Romanian: "🇷🇴",
+    Hungarian: "🇭🇺",
+    Ukrainian: "🇺🇦",
+    Amharic: "🇪🇹",
+  };
+
+  return languageFlags[language] || "🌐";
+}
+
+export const LANGUAGES = [
+  "English",
+  "Spanish",
+  "French",
+  "German",
+  "Mandarin",
+  "Japanese",
+  "Korean",
+  "Portuguese",
+  "Russian",
+  "Arabic",
+  "Hindi",
+  "Italian",
+  "Dutch",
+  "Turkish",
+  "Polish",
+  "Swedish",
+  "Norwegian",
+  "Danish",
+  "Finnish",
+  "Greek",
+  "Czech",
+  "Romanian",
+  "Hungarian",
+  "Ukrainian",
+  "Amharic",
+];
