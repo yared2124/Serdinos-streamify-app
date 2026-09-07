@@ -7,7 +7,7 @@ import {
   Channel,
   ChannelHeader,
   Chat,
-  MessageInput,
+  MessageComposerUI,
   MessageList,
   Thread,
   Window,
@@ -95,7 +95,7 @@ const ChatPage = () => {
           <Window>
             <ChannelHeader />
             <MessageList />
-            <MessageInput focus />
+            <MessageComposerUI />
           </Window>
           <Thread />
         </Channel>
